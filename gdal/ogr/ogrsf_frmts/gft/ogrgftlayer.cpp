@@ -247,7 +247,7 @@ static OGRGeometry* ParseKMLGeometry(/* const */ CPLXMLNode* psXML)
                 poGeom = new OGRPoint(CPLAtof(papszTokens[0]), CPLAtof(papszTokens[1]));
             else if (CSLCount(papszTokens) == 3)
                 poGeom = new OGRPoint(CPLAtof(papszTokens[0]), CPLAtof(papszTokens[1]),
-                                      CPLAtof(papszTokens[2]));
+                                      CPLAtof(papszTokens[2]),1);
             CSLDestroy(papszTokens);
         }
     }

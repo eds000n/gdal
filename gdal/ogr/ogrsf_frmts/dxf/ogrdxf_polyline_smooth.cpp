@@ -87,7 +87,7 @@ OGRGeometry* DXFSmoothPolyline::Tesselate() const
 
     if(m_vertices.size() == 1)
     {
-        OGRPoint* poPt = new OGRPoint(m_vertices[0].x, m_vertices[0].y, m_vertices[0].z);
+        OGRPoint* poPt = new OGRPoint(m_vertices[0].x, m_vertices[0].y, m_vertices[0].z, 1);
         if(m_vertices[0].z == 0 || m_dim == 2)
             poPt->flattenTo2D();
         return poPt;

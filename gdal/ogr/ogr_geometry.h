@@ -195,6 +195,8 @@ class CPL_DLL OGRGeometry
     virtual OGRBoolean  Contains( const OGRGeometry * ) const;
     virtual OGRBoolean  Overlaps( const OGRGeometry * ) const;
 //    virtual OGRBoolean  Relate( const OGRGeometry *, const char * ) const;
+//    virtual OGRGeometryCollection LocateAlong(double m) const;
+//    virtual OGRGeometryCollection LocateBetween(double mstart, double mend) const;
 
     virtual OGRGeometry *Boundary() const;
     virtual double  Distance( const OGRGeometry * ) const;
@@ -241,11 +243,16 @@ class CPL_DLL OGRPoint : public OGRGeometry
     double      x;
     double      y;
     double      z;
+    double      m;
+    int		hasZ;
+    int		hasM;
 
   public:
                 OGRPoint();
                 OGRPoint( double x, double y );
-                OGRPoint( double x, double y, double z );
+                //fourth argument is 1 if the thrid argument is Z and 0 if third argument is M
+                OGRPoint( double x, double y, double z, int hasZ ); 
+		OGRPoint( double x, double y, double z, double m);
     virtual     ~OGRPoint();
 
     // IWks Interface
@@ -268,12 +275,14 @@ class CPL_DLL OGRPoint : public OGRGeometry
     double      getX() const { return x; } 
     double      getY() const { return y; }
     double      getZ() const { return z; }
+    double      getM() const { return m; }
 
     // Non standard
     virtual void setCoordinateDimension( int nDimension ); 
     void        setX( double xIn ) { x = xIn; if (nCoordDimension <= 0) nCoordDimension = 2; }
     void        setY( double yIn ) { y = yIn; if (nCoordDimension <= 0) nCoordDimension = 2; }
     void        setZ( double zIn ) { z = zIn; nCoordDimension=3; }
+    void        setM( double mIn ) { m = mIn; nCoordDimension=4; }
 
     // ISpatialRelation
     virtual OGRBoolean  Equals( OGRGeometry * ) const;

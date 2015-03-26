@@ -1094,7 +1094,7 @@ OGRFeature *OGRSXFLayer::TranslatePoint(const SXFRecordDescription& certifInfo,
     OGRFeature *poFeature = new OGRFeature(poFeatureDefn);
     OGRMultiPoint* poMPt = new OGRMultiPoint();
 
-    poMPt->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ) );
+    poMPt->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ) );
 
 /*---------------------- Reading SubObjects --------------------------------*/
 
@@ -1131,7 +1131,7 @@ OGRFeature *OGRSXFLayer::TranslatePoint(const SXFRecordDescription& certifInfo,
                 break;
             nOffset +=  nDelta;
 
-            poMPt->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ) );
+            poMPt->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ) );
         }
     }
 

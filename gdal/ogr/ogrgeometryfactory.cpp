@@ -1976,7 +1976,7 @@ OGRErr OGRGeometryFactory::createFromFgfInternal( unsigned char *pabyData,
             CPL_SWAP64PTR( adfTuple + iOrdinal );
 #endif
         if( nTupleSize > 2 )
-            poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2] );
+            poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2], 1 );
         else
             poGeom = new OGRPoint( adfTuple[0], adfTuple[1] );
 

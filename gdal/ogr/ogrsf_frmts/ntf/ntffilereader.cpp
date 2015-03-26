@@ -743,7 +743,7 @@ OGRGeometry *NTFFileReader::ProcessGeometry3D( NTFRecord * poRecord,
                                       14+1+2*GetXYLen()+nZWidth-1)) * dfZMult;
 
       
-        poGeometry = new OGRPoint( dfX, dfY, dfZ );
+        poGeometry = new OGRPoint( dfX, dfY, dfZ, 1 );
     }
     
     else if( nGType == 2 )

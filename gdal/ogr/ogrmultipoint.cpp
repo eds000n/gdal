@@ -237,7 +237,7 @@ OGRErr OGRMultiPoint::importFromWkt( char ** ppszInput )
         if( padfZ )
             poGeom = new OGRPoint( paoPoints[iGeom].x, 
                                    paoPoints[iGeom].y, 
-                                   padfZ[iGeom] );
+                                   padfZ[iGeom], 1 );
         else
             poGeom =  new OGRPoint( paoPoints[iGeom].x, 
                                     paoPoints[iGeom].y );
@@ -327,7 +327,7 @@ OGRErr OGRMultiPoint::importFromWkt_Bracketed( char ** ppszInput, int bHasM, int
         if( padfZ && !(bHasM && !bHasZ))
             poGeom = new OGRPoint( paoPoints[0].x, 
                                    paoPoints[0].y, 
-                                   padfZ[0] );
+                                   padfZ[0], 1 );
         else
             poGeom =  new OGRPoint( paoPoints[0].x, 
                                     paoPoints[0].y );

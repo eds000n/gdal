@@ -924,7 +924,7 @@ OGRErr OGRSQLiteLayer::createFromSpatialiteInternal(const GByte *pabyData,
             CPL_SWAP64PTR( adfTuple + 2 );
         }
 
-        poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2] );
+        poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2], 1 );
 
         if( pnBytesConsumed )
             *pnBytesConsumed = 4 + 3 * 8;
@@ -973,7 +973,7 @@ OGRErr OGRSQLiteLayer::createFromSpatialiteInternal(const GByte *pabyData,
             CPL_SWAP64PTR( adfTuple + 3 );
         }
 
-        poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2] );
+        poGeom = new OGRPoint( adfTuple[0], adfTuple[1], adfTuple[2], 1 );
 
         if( pnBytesConsumed )
             *pnBytesConsumed = 4 + 4 * 8;

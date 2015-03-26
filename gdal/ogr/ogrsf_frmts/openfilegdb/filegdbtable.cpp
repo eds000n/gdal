@@ -2258,7 +2258,7 @@ OGRGeometry* FileGDBOGRGeometryConverterImpl::GetAsGeometry(const OGRField* psFi
             {
                 ReadVarUInt64NoCheck(pabyCur, z);
                 dfZ = (z - 1) / poGeomField->GetZScale() + poGeomField->GetZOrigin();
-                return new OGRPoint(dfX, dfY, dfZ);
+                return new OGRPoint(dfX, dfY, dfZ, 1);
             }
             else
             {

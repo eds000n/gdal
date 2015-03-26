@@ -76,7 +76,7 @@ OGRErr OGRCreateFromGeomedia( GByte *pabyGeom,
         memcpy(&dfZ, pabyGeom + 16, 8);
         CPL_LSBPTR64(&dfZ);
 
-        *ppoGeom = new OGRPoint( dfX, dfY, dfZ );
+        *ppoGeom = new OGRPoint( dfX, dfY, dfZ, 1 );
 
          return OGRERR_NONE;
     }

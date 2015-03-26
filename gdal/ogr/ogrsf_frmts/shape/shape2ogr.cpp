@@ -114,13 +114,13 @@ OGRGeometry *SHPReadOGRObject( SHPHandle hSHP, int iShape, SHPObject *psShape )
     else if(psShape->nSHPType == SHPT_POINTZ )
     {
         poOGR = new OGRPoint( psShape->padfX[0], psShape->padfY[0],
-                              psShape->padfZ[0] );
+                              psShape->padfZ[0], 1 );
     }
     else if(psShape->nSHPType == SHPT_POINTM )
     {
-        // Read XYM as XYZ
+        // Read XYM as XYZ, not anymore :P
         poOGR = new OGRPoint( psShape->padfX[0], psShape->padfY[0],
-                              psShape->padfM[0] );
+                              psShape->padfM[0], 0 );
     }
 /* -------------------------------------------------------------------- */
 /*      Multipoint.                                                     */
@@ -144,7 +144,7 @@ OGRGeometry *SHPReadOGRObject( SHPHandle hSHP, int iShape, SHPObject *psShape )
 
                 if( psShape->nSHPType == SHPT_MULTIPOINTZ )
                     poPoint = new OGRPoint( psShape->padfX[i], psShape->padfY[i],
-                                            psShape->padfZ[i] );
+                                            psShape->padfZ[i], 1 );
                 else
                     poPoint = new OGRPoint( psShape->padfX[i], psShape->padfY[i] );
 

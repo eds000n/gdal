@@ -513,7 +513,7 @@ OGRGeometry* KMLNode::getGeometry(Nodetype eType)
                         if (psCoord->bHasZ)
                             poGeom = new OGRPoint(psCoord->dfLongitude,
                                                   psCoord->dfLatitude,
-                                                  psCoord->dfAltitude);
+                                                  psCoord->dfAltitude, 1);
                         else
                             poGeom = new OGRPoint(psCoord->dfLongitude,
                                                   psCoord->dfLatitude);

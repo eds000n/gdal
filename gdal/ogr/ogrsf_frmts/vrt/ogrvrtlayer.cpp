@@ -1528,7 +1528,7 @@ retry:
                 poDstFeat->SetGeomFieldDirectly( i,
                     new OGRPoint( poSrcFeat->GetFieldAsDouble( apoGeomFieldProps[i]->iGeomXField ),
                                 poSrcFeat->GetFieldAsDouble( apoGeomFieldProps[i]->iGeomYField ),
-                                poSrcFeat->GetFieldAsDouble( apoGeomFieldProps[i]->iGeomZField ) ) );
+                                poSrcFeat->GetFieldAsDouble( apoGeomFieldProps[i]->iGeomZField ), 1 ) );
             else
                 poDstFeat->SetGeomFieldDirectly( i,
                     new OGRPoint( poSrcFeat->GetFieldAsDouble( apoGeomFieldProps[i]->iGeomXField ),

@@ -1033,7 +1033,7 @@ void OGR2SQLITE_ST_MakePoint(sqlite3_context* pContext,
             return;
         }
 
-        poPoint = new OGRPoint(dfX, dfY, dfZ);
+        poPoint = new OGRPoint(dfX, dfY, dfZ, 1);
     }
     else
         poPoint = new OGRPoint(dfX, dfY);

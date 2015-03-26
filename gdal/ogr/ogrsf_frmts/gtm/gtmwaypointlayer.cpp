@@ -313,7 +313,7 @@ OGRFeature* GTMWaypointLayer::GetNextFeature()
             poFeature->SetGeometryDirectly(new OGRPoint 
                                            (poWaypoint->getLongitude(),
                                             poWaypoint->getLatitude(),
-                                            altitude));
+                                            altitude, 1));
                                             
         if (poSRS)
             poFeature->GetGeometryRef()->assignSpatialReference(poSRS);

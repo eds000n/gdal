@@ -386,7 +386,7 @@ OGRFeature *OGRNTFRasterLayer::GetFeature( GIntBig nFeatureId )
     poFeature->SetGeometryDirectly(
         new OGRPoint( padfGeoTransform[0] + padfGeoTransform[1] * iReqColumn,
                       padfGeoTransform[3] + padfGeoTransform[5] * iReqRow,
-                      pafColumn[iReqRow] ) );
+                      pafColumn[iReqRow], 1 ) );
     poFeature->SetField( 0, pafColumn[iReqRow] );
     
     return poFeature;

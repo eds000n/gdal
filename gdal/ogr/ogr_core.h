@@ -339,6 +339,10 @@ typedef enum
     wkbMultiCurveZ = 1011,      /**< wkbMultiCurve with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
     wkbMultiSurfaceZ = 1012,    /**< wkbMultiSurface with Z component. ISO SQL/MM Part 3. GDAL &gt;= 2.0 */
 
+    wkbPointZ = 1001,
+    wkbPointM = 2001,
+    wkbPointZM = 3001,
+
     wkbPoint25D = 0x80000001, /**< 2.5D extension as per 99-402 */
     wkbLineString25D = 0x80000002, /**< 2.5D extension as per 99-402 */
     wkbPolygon25D = 0x80000003, /**< 2.5D extension as per 99-402 */

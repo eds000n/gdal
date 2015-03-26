@@ -1617,7 +1617,7 @@ OGRErr OGRCreateFromShapeBin( GByte *pabyShape,
             CPL_LSBPTR64( &dfZ );
         }
 
-        *ppoGeom = new OGRPoint( dfX, dfY, dfZ );
+        *ppoGeom = new OGRPoint( dfX, dfY, dfZ, 1 );
         (*ppoGeom)->setCoordinateDimension( bHasZ ? 3 : 2 );
 
         return OGRERR_NONE;

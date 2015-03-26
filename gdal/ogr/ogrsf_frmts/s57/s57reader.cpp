@@ -1415,7 +1415,7 @@ OGRFeature *S57Reader::ReadVector( int nFeatureId, int nRCNM )
                 dfX =poRecord->GetIntSubfield("SG3D",0,"XCOO",0)/(double)nCOMF;
                 dfY =poRecord->GetIntSubfield("SG3D",0,"YCOO",0)/(double)nCOMF;
                 dfZ =poRecord->GetIntSubfield("SG3D",0,"VE3D",0)/(double)nSOMF;
-                poFeature->SetGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ));
+                poFeature->SetGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ));
             }
             else
             {
@@ -1430,7 +1430,7 @@ OGRFeature *S57Reader::ReadVector( int nFeatureId, int nRCNM )
                     dfZ = poRecord->GetIntSubfield("SG3D",0,"VE3D",i)
                         / (double)nSOMF;
                     
-                    poMP->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ) );
+                    poMP->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ) );
                 }
 
                 poFeature->SetGeometryDirectly( poMP );
@@ -1914,7 +1914,7 @@ void S57Reader::AssemblePointGeometry( DDFRecord * poFRecord,
     if( dfZ == 0.0 )
         poFeature->SetGeometryDirectly( new OGRPoint( dfX, dfY ) );
     else
-        poFeature->SetGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ) );
+        poFeature->SetGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ) );
 }
 
 /************************************************************************/
@@ -2002,7 +2002,7 @@ void S57Reader::AssembleSoundingGeometry( DDFRecord * poFRecord,
             pachData += nBytesConsumed;
         }
 
-        poMP->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ ) );
+        poMP->addGeometryDirectly( new OGRPoint( dfX, dfY, dfZ, 1 ) );
     }
 
     poFeature->SetGeometryDirectly( poMP );

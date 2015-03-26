@@ -469,7 +469,7 @@ OGRFeature *OGRDXFLayer::TranslateMTEXT()
 
     OGRPoint* poGeom;
     if( bHaveZ )
-        poGeom = new OGRPoint( dfX, dfY, dfZ );
+        poGeom = new OGRPoint( dfX, dfY, dfZ, 1 );
     else
         poGeom = new OGRPoint( dfX, dfY );
     ApplyOCSTransformer( poGeom );
@@ -623,7 +623,7 @@ OGRFeature *OGRDXFLayer::TranslateTEXT()
 
     OGRPoint* poGeom;
     if( bHaveZ )
-        poGeom = new OGRPoint( dfX, dfY, dfZ );
+        poGeom = new OGRPoint( dfX, dfY, dfZ, 1 );
     else
         poGeom = new OGRPoint( dfX, dfY );
     ApplyOCSTransformer( poGeom );
@@ -759,7 +759,7 @@ OGRFeature *OGRDXFLayer::TranslatePOINT()
 
     OGRPoint* poGeom;
     if( bHaveZ )
-        poGeom = new OGRPoint( dfX, dfY, dfZ );
+        poGeom = new OGRPoint( dfX, dfY, dfZ, 1 );
     else
         poGeom = new OGRPoint( dfX, dfY );
     ApplyOCSTransformer( poGeom );
@@ -1832,7 +1832,7 @@ OGRFeature *OGRDXFLayer::TranslateINSERT()
         poFeature->SetGeometryDirectly(
             new OGRPoint( oTransformer.dfXOffset, 
                           oTransformer.dfYOffset,
-                          oTransformer.dfZOffset ) );
+                          oTransformer.dfZOffset, 1 ) );
 
         poFeature->SetField( "BlockName", osBlockName );
 

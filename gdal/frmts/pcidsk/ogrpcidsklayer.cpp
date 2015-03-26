@@ -324,7 +324,7 @@ OGRFeature *OGRPCIDSKLayer::GetFeature( GIntBig nFID )
                 OGRPoint* poPoint =
                     new OGRPoint( aoVertices[0].x,
                                   aoVertices[0].y, 
-                                  aoVertices[0].z );
+                                  aoVertices[0].z, 1 );
                 if (poSRS)
                     poPoint->assignSpatialReference(poSRS);
                 poFeature->SetGeometryDirectly(poPoint);

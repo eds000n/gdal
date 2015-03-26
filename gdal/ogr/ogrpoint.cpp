@@ -60,12 +60,40 @@ OGRPoint::OGRPoint()
 /*      Initialize point to value.                                      */
 /************************************************************************/
 
-OGRPoint::OGRPoint( double xIn, double yIn, double zIn )
+OGRPoint::OGRPoint( double xIn, double yIn, double zIn, double mIn )
 
 {
     x = xIn;
     y = yIn;
     z = zIn;
+    m = mIn;
+    hasZ = 1;
+    hasM = 1;
+    nCoordDimension = 4;
+}
+
+/************************************************************************/
+/*                              OGRPoint()                              */
+/*                                                                      */
+/*      Initialize point to value.                                      */
+/************************************************************************/
+
+OGRPoint::OGRPoint( double xIn, double yIn, double zIn, int aHasZ )
+
+{
+    x = xIn;
+    y = yIn;
+    if ( aHasZ == 1){
+	z = zIn;
+	m = 0.0;
+	hasZ = 1;
+	hasM = 0;
+    }else{
+	m = zIn;
+	z = 0.0;
+	hasZ = 0;
+	hasM = 1;
+    }
     nCoordDimension = 3;
 }
 
@@ -81,6 +109,9 @@ OGRPoint::OGRPoint( double xIn, double yIn )
     x = xIn;
     y = yIn;
     z = 0.0;
+    m = 0.0;
+    hasZ = 0;
+    hasM = 0;
     nCoordDimension = 2;
 }
 
@@ -102,7 +133,7 @@ OGRPoint::~OGRPoint()
 OGRGeometry *OGRPoint::clone() const
 
 {
-    OGRPoint    *poNewPoint = new OGRPoint( x, y, z );
+    OGRPoint    *poNewPoint = new OGRPoint( x, y, z, m );
 
     poNewPoint->assignSpatialReference( getSpatialReference() );
     poNewPoint->setCoordinateDimension( nCoordDimension );
@@ -116,7 +147,7 @@ OGRGeometry *OGRPoint::clone() const
 void OGRPoint::empty()
 
 {
-    x = y = z = 0.0;
+    x = y = z = m = 0.0;
     nCoordDimension = -2;
 }
 
@@ -137,8 +168,13 @@ int OGRPoint::getDimension() const
 OGRwkbGeometryType OGRPoint::getGeometryType() const
 
 {
-    if( getCoordinateDimension() == 3 )
-        return wkbPoint25D;
+    int c = getCoordinateDimension();
+    if( c == 4 )
+        return wkbPointZM;
+    else if ( c == 3 && hasZ == 1)
+	return wkbPointZ;
+    else if ( c == 3 && hasZ == 0)
+	return wkbPointM;
     else
         return wkbPoint;
 }
@@ -150,7 +186,15 @@ OGRwkbGeometryType OGRPoint::getGeometryType() const
 const char * OGRPoint::getGeometryName() const
 
 {
-    return "POINT";
+    OGRwkbGeometryType t = getGeometryType();
+    if ( t == wkbPoint )
+        return "POINT";
+    else if ( t == wkbPointZ )
+	return "POINT Z";
+    else if ( t == wkbPointM )
+	return "POINT M";
+    else if ( t == wkbPointZM )
+	return "POINT ZM";
 }
 
 /************************************************************************/
@@ -161,7 +205,7 @@ void OGRPoint::flattenTo2D()
 
 {
     z = 0;
-    if (nCoordDimension > 2)
+    if (nCoordDimension > 2)//FIXME: ??
         nCoordDimension = 2;
 }
 

@@ -324,7 +324,7 @@ OGRFeature * OGRSDTSLayer::GetNextUnfilteredFeature()
           
           poFeature->SetGeometryDirectly( new OGRPoint( poPoint->dfX,
                                                         poPoint->dfY,
-                                                        poPoint->dfZ ) );
+                                                        poPoint->dfZ, 1 ) );
       }
       break;
 

@@ -145,7 +145,7 @@ OGRFeature *OGRARCGENLayer::GetNextRawFeature()
                     poFeature->SetGeometryDirectly(
                         new OGRPoint(CPLAtof(papszTokens[1]),
                                      CPLAtof(papszTokens[2]),
-                                     CPLAtof(papszTokens[3])));
+                                     CPLAtof(papszTokens[3]), 1));
                 CSLDestroy(papszTokens);
                 return poFeature;
             }

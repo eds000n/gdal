@@ -1860,6 +1860,12 @@ const char * OGRToOGCGeomType( OGRwkbGeometryType eGeomType )
             return "GEOMETRY";
         case wkbPoint:
             return "POINT";
+        case wkbPointZ:
+            return "POINT Z";
+        case wkbPointM:
+            return "POINT M";
+        case wkbPointZM:
+            return "POINT ZM";
         case wkbLineString:
             return "LINESTRING";
         case wkbPolygon:
@@ -5033,6 +5039,9 @@ OGRErr OGRGeometry::importCurveCollectionFromWkt( char ** ppszInput,
 OGRwkbGeometryType OGR_GT_Flatten( OGRwkbGeometryType eType )
 {
     eType = (OGRwkbGeometryType) (eType & (~wkb25DBitInternalUse));
+    if( eType == 1001 || eType == 2001 || eType == 3001)
+	    return eType;
+    //FIXME: Keep following lines until all Z, M and ZM are fully implemented
     if( eType >= 1001 && eType < 2000 ) /* ISO Z */
         return (OGRwkbGeometryType) (eType - 1000);
     if( eType >= 2000 && eType < 3000 ) /* ISO M */

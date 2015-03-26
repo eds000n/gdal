@@ -522,7 +522,7 @@ OGRPoint* OGRESRIJSONReadPoint( json_object* poObj)
 
     if(is3d)
     {
-        return new OGRPoint(dfX, dfY, dfZ);
+        return new OGRPoint(dfX, dfY, dfZ, 1);
     }
     else
     {
@@ -917,7 +917,7 @@ OGRMultiPoint* OGRESRIJSONReadMultiPoint( json_object* poObj)
 
         if(nNumCoords > 2 && (TRUE == bHasZ || FALSE == bHasM))
         {
-            poMulti->addGeometryDirectly( new OGRPoint(dfX, dfY, dfZ) );
+            poMulti->addGeometryDirectly( new OGRPoint(dfX, dfY, dfZ, 1) );
         }
         else
         {
